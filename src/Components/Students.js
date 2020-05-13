@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../Student.css";
 
 import { getStudents } from "../utils";
 import Student from './Student'
@@ -16,12 +17,12 @@ const Students = (props) => {
   }, []);
 
   return (
-    <div>
-      {students.length !== 0 ? students.map((student, idx) => {
+    <div className="student-container">
+      {students.length !== 0 ? students.map(student => {
       return (
-        <div key={student.id}>
-        <Student student={student} />
-        </div>
+        <>
+        <Student student={student} key={student.id} />
+        </>
       )}) : <p>Loading students...</p> }
     </div>
   );
