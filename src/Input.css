@@ -1,0 +1,18 @@
+input {
+  width: 96%;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  margin-left: 2%;
+  margin-right: 2%;
+  height: 5%;
+  padding-top: 2%;
+}
+
+input:focus {
+  border-bottom: 1px solid black;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 150%;
+  font-family: 'Raleway', sans-serif;
+}
