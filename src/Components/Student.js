@@ -5,9 +5,7 @@ import {getAverage} from '../utils'
 const Student = props => {
   const {pic, firstName, lastName, email, company, skill, grades} = props.student
 
-  console.log(grades)
   const average = getAverage(grades)
-  console.log(average)
 
   return (
     <div>
