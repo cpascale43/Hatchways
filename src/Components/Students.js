@@ -8,10 +8,16 @@ import InputForm from "./InputForm";
 const Students = (props) => {
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const [tags, setTags] = useState([])
 
   async function handleStudents() {
     let data = await getStudents();
-    setStudents(data.students);
+    let students = data.students;
+    students.map(student => {
+      student.tags = []
+    })
+    console.log(students)
+    setStudents(students);
   }
 
   const filterNames = (event) => {
@@ -27,6 +33,8 @@ const Students = (props) => {
     handleStudents();
   }, []);
 
+  console.log(tags)
+
   if (students.length === 0) {
     return (
       <div>
@@ -36,12 +44,13 @@ const Students = (props) => {
   } else
     return (
       <div className="student-container">
-        <InputForm filterNames={filterNames} />
+        <InputForm type={'name'} filter={filterNames} />
+        <InputForm type={'tags'} filter={filterNames} />
         {filteredStudents.length !== 0 ? (
           filteredStudents.map((student) => {
             return (
               <>
-                <Student student={student} key={student.id} />
+                <Student setTags={setTags} student={student} key={student.id} />
               </>
             );
           })
@@ -49,7 +58,7 @@ const Students = (props) => {
           students.map((student) => {
             return (
               <>
-                <Student student={student} key={student.id} />
+                <Student setTags={setTags} student={student} key={student.id} />
               </>
             );
           })

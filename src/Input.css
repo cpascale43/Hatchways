@@ -12,7 +12,27 @@ input:focus {
   border-bottom: 1px solid black;
 }
 
+input.form {
+  width: 25%;
+  padding-top: 10%;
+  margin-left: 25%
+}
+
 input::-webkit-input-placeholder {
   font-size: 150%;
   font-family: 'Raleway', sans-serif;
+}
+
+.tag {
+  padding: 8px;
+  width: fit-content;
+  background-color: lightgrey;
+  border-radius: 4px;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.tag-submit {
+  visibility: hidden;
 }

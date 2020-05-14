@@ -1,14 +1,13 @@
 import React from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
+import '../Button.css'
 
-import "../Button.css";
-
-const HideIcon = ({ setShowGrades, showGrades }) => {
+const HideIcon = ({ setExpandView, expandView }) => {
   return (
       <RemoveIcon
         className="expand-btn"
         onClick={() => {
-          setShowGrades(!showGrades);
+          setExpandView(!expandView);
         }}
         fontSize="large"
       />

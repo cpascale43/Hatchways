@@ -1,14 +1,13 @@
 import React from "react";
 import AddIcon from "@material-ui/icons/Add";
+import '../Button.css'
 
-import "../Button.css";
-
-const ExpandIcon = ({ setShowGrades, showGrades }) => {
+const ExpandIcon = ({ setExpandView, expandView }) => {
   return (
       <AddIcon
         className="expand-btn"
         onClick={() => {
-          setShowGrades(!showGrades);
+          setExpandView(!expandView);
         }}
         fontSize="large"
       />
