@@ -1,10 +1,8 @@
-.expand-button {
-  height: 24px;
-  width: 24px;
+.expand-btn {
   cursor: pointer;
   color: gray;
 }
 
-.expand-button:hover {
+.expand-btn:hover {
   color: black;
 }

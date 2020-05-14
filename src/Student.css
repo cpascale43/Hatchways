@@ -8,11 +8,14 @@
   box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+.student-card-container {
+  border-bottom:1px solid whitesmoke;
+}
+
 .student-card {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom:1px solid whitesmoke;
 }
 
 .image-container {
@@ -24,13 +27,16 @@
   border: 1px solid lightgray;
 }
 
-.student-name {
-  font-weight: 800;
-  font-family: 'Raleway', sans-serif;
+.text-container {
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 2%; */
 }
 
-.text-container {
-  padding-bottom: 2%;
+.student-name {
+  width: 100%;
+  font-weight: 800;
+  font-family: 'Raleway', sans-serif;
 }
 
 .text {
@@ -43,15 +49,24 @@
   font-family: 'Raleway', sans-serif;
 }
 
-.average {
-  padding-bottom: 10%;
+.button-container {
+  flex-grow: 2;
+  margin-right: 4%;
+  justify-content: flex-end;
+  display: flex;
 }
 
-.button-container {
-  width: 100vw;
-  padding-right: 5%;
+.grades-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  text-align: start;
+  padding-bottom: 5%;
+  transform: translate(26%)
+}
+
+.grades-container > p {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
 }
 
 @media all and (max-width: 600px) {
@@ -60,7 +75,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom:1px solid whitesmoke;
   }
 
   .student-name {
@@ -72,7 +86,10 @@
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    padding-bottom: 10%;
   }
 
+  .grades-container {
+    text-align: center;
+    padding-bottom: 2%;
+  }
 }

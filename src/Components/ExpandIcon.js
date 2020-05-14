@@ -6,7 +6,7 @@ import "../Button.css";
 const ExpandIcon = ({ setShowGrades, showGrades }) => {
   return (
       <AddIcon
-        className="expand-button"
+        className="expand-btn"
         onClick={() => {
           setShowGrades(!showGrades);
         }}

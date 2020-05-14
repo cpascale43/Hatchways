@@ -1,13 +1,18 @@
-import React from 'react'
-import RemoveIcon from '@material-ui/icons/Remove';
+import React from "react";
+import RemoveIcon from "@material-ui/icons/Remove";
 
-import "../Button.css"
+import "../Button.css";
 
-const HideIcon = ({setShowGrades, showGrades}) => {
-
+const HideIcon = ({ setShowGrades, showGrades }) => {
   return (
-      <RemoveIcon className="expand-button" onClick={() => {setShowGrades(!showGrades)}} fontSize="large" />
-  )
-}
+      <RemoveIcon
+        className="expand-btn"
+        onClick={() => {
+          setShowGrades(!showGrades);
+        }}
+        fontSize="large"
+      />
+  );
+};
 
-export default HideIcon
+export default HideIcon;
