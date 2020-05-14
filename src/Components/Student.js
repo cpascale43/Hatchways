@@ -46,7 +46,11 @@ const Student = (props) => {
       <div className="grades-container">
         {showGrades ? (
           grades.map((grade, idx) => {
-            return <p key={idx}>{`Test ${idx+1}:${grade}%`}</p>;
+            return (
+              <p key={idx}>
+                {`Test ${idx + 1}:`}&nbsp;&nbsp;&nbsp;&nbsp;{`${grade}%`}
+              </p>
+            );
           })
         ) : (
           <></>
