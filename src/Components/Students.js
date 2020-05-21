@@ -5,35 +5,89 @@ import { getStudents } from "../utils";
 import Student from "./Student";
 import InputForm from "./InputForm";
 
-const Students = (props) => {
+const Students = () => {
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
-  const [tags, setTags] = useState([])
+  const [nameFilter, setNameFilter] = useState([]);
+  const [tagFilter, setTagFilter] = useState([]);
 
   async function handleStudents() {
     let data = await getStudents();
     let students = data.students;
-    students.map(student => {
-      student.tags = []
-    })
-    console.log(students)
-    setStudents(students);
+    let newStudents = []
+    students.map((student) => {
+      let addTags = student;
+      addTags.tags = [];
+      newStudents.push(addTags);
+    });
+    setStudents(newStudents);
+    setFilteredStudents(newStudents);
+    setNameFilter(newStudents);
+    setTagFilter(newStudents);
   }
 
-  const filterNames = (event) => {
-    let str = event.target.value;
-    let newStudents = students.filter((student) => {
-      const name = `${student.firstName} ${student.lastName}`.toLowerCase();
-      return name.includes(str);
+  const filterNames = (str) => {
+    let newNameFilter = [];
+    students.map((student) => {
+      const fullName = `${student.firstName} ${student.lastName}`.toLowerCase();
+      if (fullName.includes(str)) {
+        newNameFilter.push(student);
+      }
     });
-    setFilteredStudents(newStudents);
+    let studentsFilter = [];
+    tagFilter.map((student) => {
+      const fullName = `${student.firstName} ${student.lastName}`.toLowerCase();
+      if (fullName.includes(str)) {
+        studentsFilter.push(student);
+      }
+    });
+    setFilteredStudents(studentsFilter);
+    setNameFilter(newNameFilter);
+  };
+
+  const filterTags = (str) => {
+    if (str) {
+      let newTagFilter = [];
+      let newStudentFilter = [];
+      students.map((student) => {
+        let tagged = false;
+        student.tags.map((tag) => {
+          if (tag.includes(str)) {
+            tagged = true;
+          }
+        });
+        if (tagged) {
+          newTagFilter.push(student);
+        }
+      });
+      filteredStudents.map((student) => {
+        let tagged = false;
+        student.tags.map((tag) => {
+          if (tag.includes(str)) {
+            tagged = true;
+          }
+        });
+        if (tagged) {
+          newStudentFilter.push(student);
+        }
+      });
+      setFilteredStudents(newStudentFilter);
+      setTagFilter(newTagFilter);
+    } else {
+      setFilteredStudents(nameFilter);
+      setTagFilter(students);
+    }
+  };
+
+  const addTag = (str, index) => {
+    const tagForStudentData = [...students];
+    tagForStudentData[index].tags.push(str);
+    setStudents(tagForStudentData);
   };
 
   useEffect(() => {
     handleStudents();
   }, []);
-
-  console.log(tags)
 
   if (students.length === 0) {
     return (
@@ -44,25 +98,18 @@ const Students = (props) => {
   } else
     return (
       <div className="student-container">
-        <InputForm type={'name'} filter={filterNames} />
-        <InputForm type={'tags'} filter={filterNames} />
-        {filteredStudents.length !== 0 ? (
-          filteredStudents.map((student) => {
-            return (
-              <>
-                <Student setTags={setTags} student={student} key={student.id} />
-              </>
-            );
-          })
-        ) : (
-          students.map((student) => {
-            return (
-              <>
-                <Student setTags={setTags} student={student} key={student.id} />
-              </>
-            );
-          })
-        )}
+        <InputForm type={"name"} filterFunc={filterNames} />
+        <InputForm type={"tags"} filterFunc={filterTags} />
+        {filteredStudents.map((student, index) => {
+          return (
+            <Student
+              key={index.toString()}
+              index={index}
+              student={student}
+              addTag={addTag}
+            />
+          );
+        })}
       </div>
     );
 };

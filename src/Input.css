@@ -14,7 +14,7 @@ input:focus {
 
 input.form {
   width: 25%;
-  padding-top: 10%;
+  padding-top: 5%;
   margin-left: 25%
 }
 
@@ -23,14 +23,29 @@ input::-webkit-input-placeholder {
   font-family: 'Raleway', sans-serif;
 }
 
+.tag-container {
+  display: flex;
+  flex-direction: flex-start;
+}
+
 .tag {
   padding: 8px;
   width: fit-content;
   background-color: lightgrey;
   border-radius: 4px;
-  margin-right: auto;
+  margin-right: 1px;
   text-align: center;
   margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+button {
+  padding: 1em 2em;
+  border: none;
+  font-size: 1em;
+  transition: all 1s ease;
+  outline: none;
+  letter-spacing: 0.1em;
 }
 
 .tag-submit {

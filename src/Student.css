@@ -60,7 +60,7 @@
 .grades-container {
   display: flex;
   flex-direction: column;
-  padding-bottom: 5%;
+  /* padding-bottom: 5%; */
 }
 
 .grades-container > p {

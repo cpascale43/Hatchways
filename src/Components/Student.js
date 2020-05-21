@@ -9,8 +9,10 @@ import { getAverage } from "../utils";
 
 const Student = (props) => {
   const [expandView, setExpandView] = useState(false);
-  const [studentTags, setStudentTags] = useState([])
+  const index = props.index
+  const addTag = props.addTag
   const {
+    tags,
     pic,
     firstName,
     lastName,
@@ -20,17 +22,8 @@ const Student = (props) => {
     grades,
   } = props.student;
 
-  const setTags = props.setTags
   const name = `${firstName.toUpperCase()} ${lastName.toUpperCase()}`;
   const average = getAverage(grades);
-
-  const addTag = (val) => {
-    setStudentTags([...studentTags, val])
-    setTags([...studentTags, val])
-    console.log('hi from function scope', studentTags)
-  };
-
-  console.log('hi from the global scope', studentTags);
 
   return (
     <div className="student-card-container">
@@ -57,19 +50,21 @@ const Student = (props) => {
       </div>
       {expandView && (
         <div className="grades-container">
-          {/* {grades.map((grade, idx) => {
+          {grades.map((grade, idx) => {
             return (
               <p key={idx}>
                 {`Test ${idx + 1}:`}&nbsp;&nbsp;&nbsp;&nbsp;{`${grade}%`}
               </p>
             );
-          })} */}
-          {studentTags && studentTags.length > 0 ? (
-            studentTags.map((tag) => <p>{tag}</p>)
+          })}
+          {tags && tags.length > 0 ? (
+            <div className="tag-container">
+            {tags.map((tag, idx) => <p key={idx} className="tag">{tag}</p>)}
+            </div>
           ) : (
-            <p>No tags</p>
+            null
           )}
-          <TagForm addTag={addTag} />
+          <TagForm addTag={addTag} index={index} />
         </div>
       )}
     </div>

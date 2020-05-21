@@ -1,10 +1,9 @@
 import React from 'react'
 
-const InputForm = props => {
+const InputForm = ({ filterFunc, type }) => {
   return (
-    <input id={`${props.type}-input`} placeholder={`Search by ${props.type}`} onChange={props.filter} />
+    <input id={`${type}-input`} placeholder={`Search by ${type}`} onChange={event => filterFunc(event.target.value.toLowerCase().trim)} />
   )
 }
-
 
 export default InputForm

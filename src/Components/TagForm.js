@@ -7,7 +7,7 @@ const TagForm = ({ addTag, index }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        addTag(newTag);
+        addTag(newTag, index);
         setNewTag("");
       }}
     >
@@ -17,6 +17,7 @@ const TagForm = ({ addTag, index }) => {
         type="text"
         value={newTag}
         onChange={(e) => {
+          e.preventDefault();
           setNewTag(e.target.value);
         }}
       />
@@ -24,18 +25,5 @@ const TagForm = ({ addTag, index }) => {
     </form>
   );
 };
-
-// const inputKeyDown = (e) => {
-//   const val = e.target.value;
-//   if (e.key === 'Enter' && val) {
-//     if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
-//       return;
-//     }
-//     setTags([...tags, val]);
-//     tagInput.value = null;
-//   } else if (e.key === 'Backspace' && !val) {
-//     removeTag(tags.length - 1);
-//   }
-// };
 
 export default TagForm;
